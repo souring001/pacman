@@ -25,15 +25,17 @@ def run():
     y_train = xss_train_label + normal_train_label
     y_test = xss_test_label + normal_test_label
 
-    X_train = np.zeros((len(xss_train_data + normal_train_data), 2))
+    X_train = np.zeros((len(xss_train_data + normal_train_data), 3))
     for i, s in enumerate(xss_train_data + normal_train_data):
-        X_train[i,0] = 1 if 'alert' in s else 0
-        X_train[i,1] = 1 if 'script' in s else 0
+        X_train[i,0] = s.count('<')
+        X_train[i,1] = s.count('>')
+        X_train[i,2] = s.count('!')
 
-    X_test = np.zeros((len(xss_test_data + normal_test_data), 2))
+    X_test = np.zeros((len(xss_test_data + normal_test_data), 3))
     for i, s in enumerate(xss_test_data + normal_test_data):
-        X_test[i,0] = 1 if 'alert' in s else 0
-        X_test[i,1] = 1 if 'script' in s else 0
+        X_test[i,0] = s.count('<')
+        X_test[i,1] = s.count('>')
+        X_test[i,2] = s.count('!')
 
 
     """
